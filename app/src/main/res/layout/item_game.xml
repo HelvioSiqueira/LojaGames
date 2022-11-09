@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="game"
+            type="com.example.lojagames.http.model.Game" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toTopOf="@id/txtPublisher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <ImageView
+                android:id="@+id/imgCover"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:src="@{game.image}"
+/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/txtPublisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{game.publisher}"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgCover"
+            tools:text="Nintendo" />
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{game.title}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtPublisher"
+            tools:text="The Legend of Zelda" />
+
+        <TextView
+            android:id="@+id/txtPriceBefore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{game.price + game.discount}"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toTopOf="@id/txtPriceAfter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtTitle"
+            tools:text="de R$300,00" />
+
+        <TextView
+            android:id="@+id/txtPriceAfter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:text="@{game.price}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtPriceBefore"
+            tools:text="R$200,00" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
