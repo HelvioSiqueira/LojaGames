@@ -1,4 +1,4 @@
-package com.example.lojagames
+package com.example.lojagames.http.model
 
 data class GamesGson(
     val games: List<Game> = emptyList()
