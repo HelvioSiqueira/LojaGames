@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="game"
             type="com.example.lojagames.http.model.Game" />
@@ -61,7 +60,7 @@
             android:id="@+id/txtPriceBefore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{}"
+            android:text="@{@string/txt_game_discount(game.price)}"
             android:textSize="11sp"
             app:layout_constraintBottom_toTopOf="@id/txtPriceAfter"
             app:layout_constraintStart_toStartOf="@id/cardImg"
@@ -72,7 +71,7 @@
             android:id="@+id/txtPriceAfter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{}"
+            android:text="@{@string/txt_game_price(game.price - game.discount)}"
             android:textColor="@color/blue"
             app:layout_constraintStart_toStartOf="@id/cardImg"
             app:layout_constraintTop_toBottomOf="@id/txtPriceBefore"

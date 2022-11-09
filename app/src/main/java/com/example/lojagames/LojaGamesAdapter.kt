@@ -1,5 +1,6 @@
 package com.example.lojagames
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,8 @@ class LojaGamesAdapter(private val games: List<Game>, private val onClick: (Game
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentGame = games[position]
+
+        binding.txtPriceBefore.paintFlags = binding.txtPriceBefore.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
         holder.binding.run {
             game = currentGame
