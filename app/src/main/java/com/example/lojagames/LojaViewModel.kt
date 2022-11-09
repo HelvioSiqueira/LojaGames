@@ -1,10 +1,13 @@
 package com.example.lojagames
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.lojagames.http.model.Game
 import com.example.lojagames.http.model.HttpsUtils
 
 class LojaViewModel(val repo: HttpsUtils): ViewModel() {
+
+    val isFinish = MutableLiveData<Boolean>()
 
     suspend fun getGames(): List<Game>? {
 

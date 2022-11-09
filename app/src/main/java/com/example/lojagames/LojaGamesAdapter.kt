@@ -10,12 +10,8 @@ class LojaGamesAdapter(private val games: List<Game>, private val onClick: (Game
 
     private lateinit var binding: ItemGameBinding
 
-    inner class ViewHolder(_binding: ItemGameBinding): RecyclerView.ViewHolder(binding.root){
-        val binding = _binding
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemGameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding = ItemGameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(binding)
     }
@@ -35,4 +31,8 @@ class LojaGamesAdapter(private val games: List<Game>, private val onClick: (Game
     }
 
     override fun getItemCount() = games.size
+
+    inner class ViewHolder(_binding: ItemGameBinding): RecyclerView.ViewHolder(binding.root){
+        val binding = _binding
+    }
 }

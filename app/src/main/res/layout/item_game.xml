@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="8dp"
+            android:id="@+id/cardImg"
             app:layout_constraintBottom_toTopOf="@id/txtPublisher"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +43,7 @@
             android:textSize="11sp"
             app:layout_constraintBottom_toTopOf="@+id/txtTitle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imgCover"
+            app:layout_constraintTop_toBottomOf="@id/cardImg"
             tools:text="Nintendo" />
 
         <TextView
@@ -58,7 +59,7 @@
             android:id="@+id/txtPriceBefore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{game.price + game.discount}"
+            android:text="@{}"
             android:textSize="11sp"
             app:layout_constraintBottom_toTopOf="@id/txtPriceAfter"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/blue"
-            android:text="@{game.price}"
+            android:text="@{}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtPriceBefore"
             tools:text="R$200,00" />
