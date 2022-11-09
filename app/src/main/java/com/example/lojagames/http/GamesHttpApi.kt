@@ -14,7 +14,7 @@ interface GamesHttpApi {
     fun getBanners(): Response<BannersGson>
 
     @GET("spotlight")
-    fun getGames(): Response<GamesGson>
+    suspend fun getGames(): Response<GamesGson>
 
     @GET("games/{id}")
     fun getDetails(@Path("id") id: Int): Response<Game>
