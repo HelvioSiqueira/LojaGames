@@ -20,7 +20,7 @@ interface GamesHttpApi {
     fun getDetails(@Path("id") id: Int): Response<Game>
 
     @GET("games/search?term={term}")
-    fun search(@Path("term") term: String): Response<List<Game>>
+    suspend fun search(@Path("term") term: String?): Response<List<Game>>
 
     @POST("checkout")
     fun checkout()

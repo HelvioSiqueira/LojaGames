@@ -113,9 +113,7 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
         TODO("Not yet implemented")
     }
 
-    override fun onQueryTextChange(p0: String?): Boolean {
-        TODO("Not yet implemented")
-    }
+    override fun onQueryTextChange(p0: String?): Boolean = true
 
     override fun onMenuItemActionExpand(p0: MenuItem?): Boolean {
         TODO("Not yet implemented")

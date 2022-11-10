@@ -10,4 +10,9 @@ class HttpsUtils(private val api: GamesHttpApi) {
 
         return api.getGames()
     }
+
+    suspend fun getSearch(term: String?): Response<List<Game>> {
+
+        return api.search(term)
+    }
 }
