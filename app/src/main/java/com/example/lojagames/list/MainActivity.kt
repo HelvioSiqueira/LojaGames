@@ -1,7 +1,8 @@
-package com.example.lojagames
+package com.example.lojagames.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.lojagames.R
 import com.example.lojagames.databinding.ActivityMainBinding
 import com.example.lojagames.http.ListGamesFragment
 

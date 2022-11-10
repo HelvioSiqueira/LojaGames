@@ -1,4 +1,4 @@
-package com.example.lojagames
+package com.example.lojagames.adapters
 
 import android.graphics.Paint
 import android.view.LayoutInflater
@@ -19,6 +19,10 @@ class LojaGamesAdapter(private val games: List<Game>, private val onClick: (Game
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentGame = games[position]
+
+        if(currentGame.title == "Chrono Trigger"){
+            currentGame.image = "https://cdn.akamai.steamstatic.com/steam/apps/613830/header.jpg?t=1646911047"
+        }
 
         binding.txtPriceBefore.paintFlags = binding.txtPriceBefore.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 

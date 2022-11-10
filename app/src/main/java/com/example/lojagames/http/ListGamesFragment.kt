@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.lojagames.LojaGamesAdapter
-import com.example.lojagames.LojaViewModel
+import com.example.lojagames.adapters.LojaGamesAdapter
+import com.example.lojagames.list.ListViewModel
 import com.example.lojagames.databinding.ListGamesLayoutBinding
+import com.example.lojagames.details.DetailsActivity
 import com.example.lojagames.http.model.Game
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,7 +29,7 @@ class ListGamesFragment : Fragment(), CoroutineScope {
 
     private var gameList = listOf<Game>()
 
-    private val viewModel: LojaViewModel by viewModel()
+    private val viewModel: ListViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,15 +59,18 @@ class ListGamesFragment : Fragment(), CoroutineScope {
     }
 
     private suspend fun getList() {
-
         gameList = viewModel.getGames()!!
     }
 
     private fun startRecyclerView() {
         binding.rvListGames.run {
             layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = LojaGamesAdapter(gameList) {}
+            adapter = LojaGamesAdapter(gameList, ::onClick)
         }
+    }
+
+    private fun onClick(currentGame: Game){
+        DetailsActivity.open(requireContext(), currentGame.id)
     }
 
     companion object {

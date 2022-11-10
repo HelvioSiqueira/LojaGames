@@ -8,7 +8,7 @@ data class Game(
     val id: Int = 0,
     val title: String = "",
     val publisher: String = "",
-    val image: String = "",
+    var image: String = "",
     val discount: Int = 0,
     val price: Int = 0,
     val description: String = "",
