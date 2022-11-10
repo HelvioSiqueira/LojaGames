@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.parceler.Parcels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -70,7 +71,7 @@ class ListGamesFragment : Fragment(), CoroutineScope {
     }
 
     private fun onClick(currentGame: Game){
-        DetailsActivity.open(requireContext(), currentGame.id)
+        DetailsActivity.open(requireContext(), currentGame)
     }
 
     companion object {

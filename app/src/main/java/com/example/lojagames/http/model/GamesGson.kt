@@ -1,9 +1,12 @@
 package com.example.lojagames.http.model
 
+import org.parceler.Parcel
+
 data class GamesGson(
     val games: List<Game> = emptyList()
 )
 
+@Parcel
 data class Game(
     val id: Int = 0,
     val title: String = "",

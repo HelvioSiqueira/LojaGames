@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.lojagames.R
+import com.example.lojagames.http.model.Game
+import org.parceler.Parcels
 
 class DetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,27 +14,27 @@ class DetailsActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_details)
 
-        val arguments = intent.getIntExtra(EXTRA_ID, 0)
+        val arguments = Parcels.unwrap<Game>(intent.getParcelableExtra(EXTRA_GAME))
 
         showDetailsFragment(arguments)
     }
 
-    private fun showDetailsFragment(id: Int){
-        val fragment = DetailsFragment.newInstance(id)
+    private fun showDetailsFragment(currentGame: Game){
+        val fragment = DetailsFragment.newInstance(currentGame)
 
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentDetails, fragment, DetailsFragment.TAG_DETAIS)
+            .replace(R.id.fragmentDetails, fragment, DetailsFragment.TAG_DETAILS)
             .commit()
     }
 
     companion object{
 
-        const val EXTRA_ID = "game_id"
+        const val EXTRA_GAME = "game"
 
-        fun open(context: Context, id: Int){
+        fun open(context: Context, currentGame: Game){
             context.startActivity(Intent(context, DetailsActivity::class.java)
-                .putExtra(EXTRA_ID, id))
+                .putExtra(EXTRA_GAME, Parcels.wrap(currentGame)))
         }
     }
 }

@@ -6,35 +6,37 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.lojagames.databinding.FragmentDetailsBinding
+import com.example.lojagames.http.model.Game
+import org.parceler.Parcels
 
 class DetailsFragment: Fragment() {
 
-    private lateinit var bindind: FragmentDetailsBinding
+    private lateinit var binding: FragmentDetailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        bindind = FragmentDetailsBinding.inflate(layoutInflater)
+        binding = FragmentDetailsBinding.inflate(layoutInflater)
 
-        return bindind.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bindind.txtTitle.text = arguments?.getInt(EXTRA_ID, 0).toString()
+        binding.txtTitle.text = Parcels.unwrap<Game>(arguments?.getParcelable(EXTRA_GAME)).toString()
     }
 
     companion object{
-        const val TAG_DETAIS = "tagDetails"
-        const val EXTRA_ID = "game_id"
+        const val TAG_DETAILS = "tagDetails"
+        const val EXTRA_GAME = "game"
 
-        fun newInstance(id: Int) = DetailsFragment().apply {
+        fun newInstance(currentGame: Game) = DetailsFragment().apply {
             arguments = Bundle().apply {
-                putInt(EXTRA_ID, id)
+                putParcelable(EXTRA_GAME, Parcels.wrap(currentGame))
             }
         }
     }
