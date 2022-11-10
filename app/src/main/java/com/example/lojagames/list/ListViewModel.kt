@@ -10,7 +10,6 @@ class ListViewModel(val repo: HttpsUtils): ViewModel() {
     val isFinish = MutableLiveData<Boolean>()
 
     suspend fun getGames(): List<Game>? {
-
         var listGames: List<Game>? = listOf()
 
         val response = repo.getGames()

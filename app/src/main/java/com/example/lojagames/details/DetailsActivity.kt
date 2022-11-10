@@ -14,12 +14,15 @@ class DetailsActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_details)
 
+        //Obtem o Game pelo Parcels
         val arguments = Parcels.unwrap<Game>(intent.getParcelableExtra(EXTRA_GAME))
 
         showDetailsFragment(arguments)
     }
 
     private fun showDetailsFragment(currentGame: Game){
+
+        //Manda o Game para o fragment
         val fragment = DetailsFragment.newInstance(currentGame)
 
         supportFragmentManager
@@ -32,6 +35,7 @@ class DetailsActivity : AppCompatActivity() {
 
         const val EXTRA_GAME = "game"
 
+        //Manda o Game por meio de um Parcels
         fun open(context: Context, currentGame: Game){
             context.startActivity(Intent(context, DetailsActivity::class.java)
                 .putExtra(EXTRA_GAME, Parcels.wrap(currentGame)))

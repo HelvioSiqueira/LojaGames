@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.lojagames.R
 import com.example.lojagames.databinding.ActivityMainBinding
-import com.example.lojagames.http.ListGamesFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,5 +22,9 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.mainLayout, fragment, ListGamesFragment.TAG_LIST)
             .commit()
+    }
+
+    override fun onSearchRequested(): Boolean {
+        return super.onSearchRequested()
     }
 }

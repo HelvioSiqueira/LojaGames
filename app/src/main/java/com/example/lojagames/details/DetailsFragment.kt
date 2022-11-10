@@ -34,6 +34,7 @@ class DetailsFragment: Fragment() {
         const val TAG_DETAILS = "tagDetails"
         const val EXTRA_GAME = "game"
 
+        //Manda o Game pela DetailsActivity pelo Parcels
         fun newInstance(currentGame: Game) = DetailsFragment().apply {
             arguments = Bundle().apply {
                 putParcelable(EXTRA_GAME, Parcels.wrap(currentGame))

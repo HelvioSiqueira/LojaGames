@@ -38,6 +38,7 @@
             android:id="@+id/txtPublisher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault"
             android:layout_marginTop="4dp"
             android:text="@{game.publisher}"
             android:textSize="11sp"
