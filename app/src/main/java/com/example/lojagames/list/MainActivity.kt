@@ -1,9 +1,11 @@
 package com.example.lojagames.list
 
+import android.app.blob.BlobStoreManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.lojagames.R
 import com.example.lojagames.databinding.ActivityMainBinding
+import java.sql.Blob
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,9 +24,5 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.mainLayout, fragment, ListGamesFragment.TAG_LIST)
             .commit()
-    }
-
-    override fun onSearchRequested(): Boolean {
-        return super.onSearchRequested()
     }
 }
