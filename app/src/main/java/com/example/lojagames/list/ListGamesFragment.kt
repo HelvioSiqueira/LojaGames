@@ -1,15 +1,27 @@
 package com.example.lojagames.list
 
 import android.app.SearchManager
+import android.content.ContentProvider
+import android.content.ContentProviderOperation
+import android.content.ContentResolver
 import android.content.Context
+import android.database.MatrixCursor
+import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.provider.BaseColumns
+import android.util.Log
 import android.view.*
+import android.widget.AutoCompleteTextView
 import android.widget.SearchView
+import android.widget.SimpleCursorAdapter
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.cursoradapter.widget.CursorAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.lojagames.MyContentProvider
 import com.example.lojagames.R
 import com.example.lojagames.adapters.LojaGamesAdapter
 import com.example.lojagames.databinding.ListGamesLayoutBinding
@@ -36,6 +48,7 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
     private lateinit var binding: ListGamesLayoutBinding
 
     private var gameList = listOf<Game>()
+    private var lastSearchTerm: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,8 +59,6 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         binding = ListGamesLayoutBinding.inflate(layoutInflater)
-
-
 
         return binding.root
     }
@@ -84,42 +95,69 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
         DetailsActivity.open(requireContext(), currentGame)
     }
 
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.loja_games, menu)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        searchItem.setOnActionExpandListener(this)
+        searchView = searchItem?.actionView as SearchView
+        searchView?.queryHint = "Pesquisa"
+        searchView?.setOnQueryTextListener(this)
+
+        if (lastSearchTerm.isNotEmpty()) {
+            Handler().post {
+                val query = lastSearchTerm
+                searchItem.expandActionView()
+                searchView?.setQuery(query, true)
+                searchView?.clearFocus()
+            }
+        }
+
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem) = true
+
+    override fun onQueryTextSubmit(p0: String?) = true
+
+    override fun onQueryTextChange(term: String?): Boolean {
+        lastSearchTerm = term ?: ""
+
+        Log.d("HSV", "Digitando...")
+
+        if (lastSearchTerm.isEmpty()) {
+            launch {
+                getList()
+                Log.d("HSV", gameList.toString())
+                startRecyclerView()
+            }
+        } else {
+            launch {
+                gameList = viewModel.getSearch(lastSearchTerm)!!
+                startRecyclerView()
+                Log.d("HSV", gameList.toString())
+            }
+        }
+
+        return true
+    }
+
+    override fun onMenuItemActionExpand(p0: MenuItem?) = true
+
+    override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
+        lastSearchTerm = ""
+
+        launch {
+            getList()
+        }
+
+        startRecyclerView()
+
+        return true
+    }
+
     companion object {
         const val TAG_LIST = "tagList"
 
         fun newInstance() = ListGamesFragment()
-    }
-
-    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        menuInflater.inflate(R.menu.loja_games, menu)
-
-        val searchManager = context?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        (menu.findItem(R.id.action_search).actionView as SearchView).apply {
-            setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
-            queryHint = "Pesquisa"
-            searchView?.onActionViewExpanded()
-            setOnQueryTextListener(this@ListGamesFragment)
-            isIconifiedByDefault = false
-            isSubmitButtonEnabled = false
-            isIconified = false
-        }
-    }
-
-
-
-    override fun onMenuItemSelected(menuItem: MenuItem) = true
-
-    override fun onQueryTextSubmit(p0: String?): Boolean {
-        TODO("Not yet implemented")
-    }
-
-    override fun onQueryTextChange(p0: String?): Boolean = true
-
-    override fun onMenuItemActionExpand(p0: MenuItem?): Boolean {
-        TODO("Not yet implemented")
-    }
-
-    override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
-        TODO("Not yet implemented")
     }
 }

@@ -4,9 +4,7 @@ import com.example.lojagames.BannersGson
 import com.example.lojagames.http.model.Game
 import com.example.lojagames.http.model.GamesGson
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface GamesHttpApi {
 
@@ -19,8 +17,8 @@ interface GamesHttpApi {
     @GET("games/{id}")
     fun getDetails(@Path("id") id: Int): Response<Game>
 
-    @GET("games/search?term={term}")
-    suspend fun search(@Path("term") term: String?): Response<List<Game>>
+    @GET("games/search?term=")
+    suspend fun search(@Query("term") term: String?): Response<List<Game>>
 
     @POST("checkout")
     fun checkout()

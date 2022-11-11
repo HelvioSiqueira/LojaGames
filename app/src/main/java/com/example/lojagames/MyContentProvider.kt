@@ -68,6 +68,6 @@ class MyContentProvider : ContentProvider(), KoinComponent, CoroutineScope{
         private const val COLUMN_GAMES = "games"
         private const val AUTHORITY = "${BuildConfig.APPLICATION_ID}.provider"
         private const val PROVIDER_TYPE = "vnd.android.cursor.item/vnd.$AUTHORITY/$COLUMN_GAMES"
-        private const val CONTENT_URI = "content://$AUTHORITY"
+        const val CONTENT_URI = "content://$AUTHORITY/$COLUMN_GAMES/"
     }
 }
