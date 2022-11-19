@@ -42,6 +42,8 @@ android {
 
 dependencies {
 
+    implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
+
     //Parceler
     implementation "org.parceler:parceler-api:$parceler_version"
     kapt "org.parceler:parceler:$parceler_version"
