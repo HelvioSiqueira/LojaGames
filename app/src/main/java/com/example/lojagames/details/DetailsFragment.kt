@@ -1,5 +1,7 @@
 package com.example.lojagames.details
 
+import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +30,8 @@ class DetailsFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.game = Parcels.unwrap<Game>(arguments?.getParcelable(EXTRA_GAME))
+
+        binding.txtPriceBefore.paintFlags = binding.txtPriceBefore.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
     }
 
     companion object{
