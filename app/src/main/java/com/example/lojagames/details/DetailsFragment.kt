@@ -27,7 +27,7 @@ class DetailsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.txtTitle.text = Parcels.unwrap<Game>(arguments?.getParcelable(EXTRA_GAME)).toString()
+        binding.game = Parcels.unwrap<Game>(arguments?.getParcelable(EXTRA_GAME))
     }
 
     companion object{
