@@ -1,36 +1,29 @@
 package com.example.lojagames.list
 
-import android.app.SearchManager
-import android.content.ContentProvider
-import android.content.ContentProviderOperation
-import android.content.ContentResolver
-import android.content.Context
-import android.database.MatrixCursor
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.provider.BaseColumns
 import android.util.Log
 import android.view.*
-import android.widget.AutoCompleteTextView
 import android.widget.SearchView
-import android.widget.SimpleCursorAdapter
+import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
-import androidx.cursoradapter.widget.CursorAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.lojagames.MyContentProvider
 import com.example.lojagames.R
 import com.example.lojagames.adapters.LojaGamesAdapter
 import com.example.lojagames.databinding.ListGamesLayoutBinding
 import com.example.lojagames.details.DetailsActivity
+import com.example.lojagames.http.model.Banner
 import com.example.lojagames.http.model.Game
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import org.imaginativeworld.whynotimagecarousel.ImageCarousel
+import org.imaginativeworld.whynotimagecarousel.listener.CarouselListener
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.coroutines.CoroutineContext
 
@@ -50,6 +43,8 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
     private var gameList = listOf<Game>()
     private var lastSearchTerm: String = ""
 
+    private var banners = listOf<Banner>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -67,6 +62,11 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
         super.onViewCreated(view, savedInstanceState)
         job = Job()
 
+        val carousel: ImageCarousel = binding.carouselView
+        carousel.registerLifecycle(lifecycle)
+
+        var list = mutableListOf<CarouselItem>()
+
         launch {
             getList()
             viewModel.isFinish.value = true
@@ -79,7 +79,22 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
         }
 
         launch {
-            Log.d("HSV", viewModel.getBanners().toString())
+
+            banners = viewModel.getBanners()!!
+
+            banners.forEach {
+                list.add(CarouselItem(it.image))
+            }
+
+            carousel.setData(list)
+        }
+
+        carousel.carouselListener = object: CarouselListener{
+            override fun onClick(position: Int, carouselItem: CarouselItem) {
+                super.onClick(position, carouselItem)
+
+                Toast.makeText(requireContext(), banners.map(Banner::url)[position], Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
