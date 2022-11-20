@@ -2,6 +2,7 @@ package com.example.lojagames.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.lojagames.http.model.Banner
 import com.example.lojagames.http.model.Game
 import com.example.lojagames.http.model.HttpsUtils
 
@@ -28,6 +29,17 @@ class ListViewModel(val repo: HttpsUtils): ViewModel() {
             response.body()
         } else{
             listOf()
+        }
+    }
+
+    suspend fun getBanners(): List<Banner>? {
+
+        val response = repo.getBanners()
+
+        return if(response.isSuccessful){
+            response.body()
+        } else {
+            null
         }
     }
 }

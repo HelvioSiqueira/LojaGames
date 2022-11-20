@@ -1,4 +1,4 @@
-package com.example.lojagames
+package com.example.lojagames.http.model
 
 import com.google.gson.annotations.SerializedName
 

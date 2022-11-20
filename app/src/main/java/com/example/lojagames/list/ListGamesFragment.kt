@@ -77,6 +77,10 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
                 startRecyclerView()
             }
         }
+
+        launch {
+            Log.d("HSV", viewModel.getBanners().toString())
+        }
     }
 
     private suspend fun getList() {

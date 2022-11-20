@@ -15,4 +15,9 @@ class HttpsUtils(private val api: GamesHttpApi) {
 
         return api.search(term)
     }
+
+    suspend fun getBanners(): Response<List<Banner>> {
+
+        return api.getBanners()
+    }
 }
