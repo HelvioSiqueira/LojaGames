@@ -10,23 +10,51 @@
         android:id="@+id/carouselView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        app:carouselPaddingEnd="40dp"
+        app:carouselPaddingStart="10dp"
+        app:carouselType="SHOWCASE"
         app:layout_constraintBottom_toTopOf="@id/rvListGames"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:scaleOnScroll="true"
+        app:scalingFactor="0.1"
+        app:showBottomShadow="false"
         app:showCaption="false"
-        app:showNavigationButtons="false">
+        app:showIndicator="false"
+        app:showNavigationButtons="false"
+        app:showTopShadow="false">
 
     </org.imaginativeworld.whynotimagecarousel.ImageCarousel>
+
+    <FrameLayout
+        android:id="@+id/frameIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparente"
+        app:layout_constraintBottom_toBottomOf="@id/carouselView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <me.relex.circleindicator.CircleIndicator2
+            android:id="@+id/customIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="@color/transparente"
+            app:ci_animator="@animator/scale_with_alpha"
+            app:ci_drawable="@drawable/dot"
+            app:ci_drawable_unselected="@drawable/dot" />
+
+    </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvListGames"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/carouselView"
+        app:layout_constraintTop_toBottomOf="@id/frameIndicator"
         tools:listitem="@layout/item_game" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

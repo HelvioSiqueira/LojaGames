@@ -1,13 +1,16 @@
 package com.example.lojagames.list
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.GridLayoutManager
@@ -65,7 +68,7 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
         val carousel: ImageCarousel = binding.carouselView
         carousel.registerLifecycle(lifecycle)
 
-        var list = mutableListOf<CarouselItem>()
+        val list = mutableListOf<CarouselItem>()
 
         launch {
             getList()
@@ -96,6 +99,9 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
                 Toast.makeText(requireContext(), banners.map(Banner::url)[position], Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.carouselView.setIndicator(binding.customIndicator)
+        
     }
 
     private suspend fun getList() {
