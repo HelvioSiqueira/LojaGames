@@ -42,6 +42,9 @@ android {
 
 dependencies {
 
+    implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0'
+
+    //RatingBar
     implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
 
     //Parceler
