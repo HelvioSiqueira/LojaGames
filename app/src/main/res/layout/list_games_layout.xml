@@ -10,12 +10,12 @@
         android:id="@+id/carouselView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         app:autoPlay="true"
-        app:autoPlayDelay="3000"
+        app:autoPlayDelay="5000"
         app:carouselGravity="START"
-        app:carouselPaddingEnd="40dp"
-        app:carouselPaddingStart="10dp"
+        app:carouselPaddingEnd="35dp"
         app:carouselType="SHOWCASE"
         app:imagePlaceholder="@drawable/carousel_default_placeholder"
         app:layout_constraintBottom_toTopOf="@id/rvListGames"
@@ -61,5 +61,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/carouselView"
         tools:listitem="@layout/item_game" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMarket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/red_market"
+        android:src="@drawable/ic_baseline_shopping_cart_24_white"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

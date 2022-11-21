@@ -69,9 +69,11 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
         super.onViewCreated(view, savedInstanceState)
         job = Job()
 
+        //Obtem a corouselView
         val carousel: ImageCarousel = binding.carouselView
         carousel.registerLifecycle(lifecycle)
 
+        //Armazena os itens(Imagens) que irão aparecer no carrosel
         val list = mutableListOf<CarouselItem>()
 
         launch {
@@ -89,19 +91,23 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
 
             banners = viewModel.getBanners()!!
 
+            //Adiciona as imagens do Banners a lista
             banners.forEach {
                 list.add(CarouselItem(it.image))
             }
 
+            //Adiciona a lista de Banners ao carrosel
             carousel.setData(list)
         }
 
-        carousel.carouselListener = object: CarouselListener{
-
+        //Objeto Listener para ações programaticas
+        carousel.carouselListener = object : CarouselListener {
             override fun onCreateViewHolder(
                 layoutInflater: LayoutInflater,
                 parent: ViewGroup
             ): ViewBinding? {
+
+                //Define um layout para o carrosel
                 return LayoutCardviewBinding.inflate(layoutInflater, parent, false)
             }
 
@@ -111,19 +117,26 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
                 currentBinding.imageView.apply {
                     scaleType = ImageView.ScaleType.CENTER_CROP
 
-                    setImage(item, org.imaginativeworld.whynotimagecarousel.R.drawable.carousel_default_placeholder)
+                    setImage(
+                        item,
+                        org.imaginativeworld.whynotimagecarousel.R.drawable.carousel_default_placeholder
+                    )
                 }
             }
 
             override fun onClick(position: Int, carouselItem: CarouselItem) {
                 super.onClick(position, carouselItem)
 
-                Toast.makeText(requireContext(), banners.map(Banner::url)[position], Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    banners.map(Banner::url)[position],
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
+        //Associa um custom CircleIndicator a um carrosel (O Cicle indicator é definido no layout)
         binding.carouselView.setIndicator(binding.customIndicator)
-
     }
 
     private suspend fun getList() {
