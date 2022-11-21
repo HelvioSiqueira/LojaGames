@@ -11,9 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="20dp"
+        app:autoPlay="true"
+        app:autoPlayDelay="3000"
+        app:carouselGravity="START"
         app:carouselPaddingEnd="40dp"
         app:carouselPaddingStart="10dp"
         app:carouselType="SHOWCASE"
+        app:imagePlaceholder="@drawable/carousel_default_placeholder"
         app:layout_constraintBottom_toTopOf="@id/rvListGames"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,9 +56,10 @@
         android:id="@+id/rvListGames"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frameIndicator"
+        app:layout_constraintTop_toBottomOf="@id/carouselView"
         tools:listitem="@layout/item_game" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

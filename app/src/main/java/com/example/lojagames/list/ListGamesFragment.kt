@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.graphics.drawable.toDrawable
@@ -14,8 +15,10 @@ import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.viewbinding.ViewBinding
 import com.example.lojagames.R
 import com.example.lojagames.adapters.LojaGamesAdapter
+import com.example.lojagames.databinding.LayoutCardviewBinding
 import com.example.lojagames.databinding.ListGamesLayoutBinding
 import com.example.lojagames.details.DetailsActivity
 import com.example.lojagames.http.model.Banner
@@ -27,6 +30,7 @@ import kotlinx.coroutines.launch
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel
 import org.imaginativeworld.whynotimagecarousel.listener.CarouselListener
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.utils.setImage
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.coroutines.CoroutineContext
 
@@ -93,6 +97,24 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
         }
 
         carousel.carouselListener = object: CarouselListener{
+
+            override fun onCreateViewHolder(
+                layoutInflater: LayoutInflater,
+                parent: ViewGroup
+            ): ViewBinding? {
+                return LayoutCardviewBinding.inflate(layoutInflater, parent, false)
+            }
+
+            override fun onBindViewHolder(binding: ViewBinding, item: CarouselItem, position: Int) {
+                val currentBinding = binding as LayoutCardviewBinding
+
+                currentBinding.imageView.apply {
+                    scaleType = ImageView.ScaleType.CENTER_CROP
+
+                    setImage(item, org.imaginativeworld.whynotimagecarousel.R.drawable.carousel_default_placeholder)
+                }
+            }
+
             override fun onClick(position: Int, carouselItem: CarouselItem) {
                 super.onClick(position, carouselItem)
 
@@ -101,7 +123,7 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
         }
 
         binding.carouselView.setIndicator(binding.customIndicator)
-        
+
     }
 
     private suspend fun getList() {
