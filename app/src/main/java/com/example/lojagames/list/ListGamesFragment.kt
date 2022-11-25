@@ -105,7 +105,7 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
             override fun onCreateViewHolder(
                 layoutInflater: LayoutInflater,
                 parent: ViewGroup
-            ): ViewBinding? {
+            ): ViewBinding {
 
                 //Define um layout para o carrosel
                 return LayoutCardviewBinding.inflate(layoutInflater, parent, false)
@@ -113,6 +113,16 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
 
             override fun onBindViewHolder(binding: ViewBinding, item: CarouselItem, position: Int) {
                 val currentBinding = binding as LayoutCardviewBinding
+
+                binding.root.setOnClickListener {
+                    Log.d("HSV", "Banner $position clicado")
+
+                    Toast.makeText(
+                        requireContext(),
+                        banners.map(Banner::url)[position],
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
                 currentBinding.imageView.apply {
                     scaleType = ImageView.ScaleType.CENTER_CROP
@@ -122,16 +132,6 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
                         org.imaginativeworld.whynotimagecarousel.R.drawable.carousel_default_placeholder
                     )
                 }
-            }
-
-            override fun onClick(position: Int, carouselItem: CarouselItem) {
-                super.onClick(position, carouselItem)
-
-                Toast.makeText(
-                    requireContext(),
-                    banners.map(Banner::url)[position],
-                    Toast.LENGTH_SHORT
-                ).show()
             }
         }
 
