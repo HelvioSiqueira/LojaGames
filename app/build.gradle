@@ -42,6 +42,9 @@ android {
 
 dependencies {
 
+    implementation "androidx.browser:browser:$browser_version"
+
+    //Circle indicator e Carousel
     implementation 'me.relex:circleindicator:2.1.6'
     implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0'
 

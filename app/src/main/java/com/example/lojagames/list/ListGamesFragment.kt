@@ -1,6 +1,10 @@
 package com.example.lojagames.list
 
+import android.app.PendingIntent
+import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -8,6 +12,7 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -117,11 +122,8 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
                 binding.root.setOnClickListener {
                     Log.d("HSV", "Banner $position clicado")
 
-                    Toast.makeText(
-                        requireContext(),
-                        banners.map(Banner::url)[position],
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    openLink(banners.map(Banner::url)[position])
+
                 }
 
                 currentBinding.imageView.apply {
@@ -148,6 +150,12 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = LojaGamesAdapter(gameList, ::onClick)
         }
+    }
+
+    private fun openLink(url: String){
+        val builder = CustomTabsIntent.Builder()
+        val customTabsIntent = builder.build()
+        customTabsIntent.launchUrl(requireContext(), Uri.parse(url))
     }
 
     //Passa o game para a DetaisActivity por meio de um callback
