@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainLayout"
@@ -9,5 +9,16 @@
     android:theme="@style/Theme.LojaGames"
     tools:context=".list.MainActivity">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMarket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/red_market"
+        android:src="@drawable/ic_baseline_shopping_cart_24_white"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        android:layout_gravity="bottom|end"/>
 
-</ScrollView>
+
+</FrameLayout>

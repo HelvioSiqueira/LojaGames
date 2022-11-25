@@ -1,78 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragmentList"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.imaginativeworld.whynotimagecarousel.ImageCarousel
-        android:id="@+id/carouselView"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        app:autoPlay="true"
-        app:autoPlayDelay="5000"
-        app:carouselGravity="START"
-        app:carouselPaddingEnd="35dp"
-        app:carouselType="SHOWCASE"
-        app:imagePlaceholder="@drawable/carousel_default_placeholder"
-        app:layout_constraintBottom_toTopOf="@id/rvListGames"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:scaleOnScroll="true"
-        app:scalingFactor="0.1"
-        app:showBottomShadow="false"
-        app:showCaption="false"
-        app:showIndicator="false"
-        app:showNavigationButtons="false"
-        app:showTopShadow="false">
+        android:layout_height="wrap_content">
 
-    </org.imaginativeworld.whynotimagecarousel.ImageCarousel>
-
-    <FrameLayout
-        android:id="@+id/frameIndicator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/transparente"
-        app:layout_constraintBottom_toBottomOf="@id/carouselView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <me.relex.circleindicator.CircleIndicator2
-            android:id="@+id/customIndicator"
+        <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+            android:id="@+id/carouselView"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            app:autoPlay="true"
+            app:autoPlayDelay="5000"
+            app:carouselGravity="START"
+            app:carouselPaddingEnd="35dp"
+            app:carouselType="SHOWCASE"
+            app:imagePlaceholder="@drawable/carousel_default_placeholder"
+            app:layout_constraintBottom_toTopOf="@id/rvListGames"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:scaleOnScroll="true"
+            app:scalingFactor="0.1"
+            app:showBottomShadow="false"
+            app:showCaption="false"
+            app:showIndicator="false"
+            app:showNavigationButtons="false"
+            app:showTopShadow="false">
+
+        </org.imaginativeworld.whynotimagecarousel.ImageCarousel>
+
+        <FrameLayout
+            android:id="@+id/frameIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/transparente"
-            app:ci_animator="@animator/scale_with_alpha"
-            app:ci_drawable="@drawable/dot"
-            app:ci_drawable_unselected="@drawable/dot" />
+            app:layout_constraintBottom_toBottomOf="@id/carouselView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-    </FrameLayout>
+            <me.relex.circleindicator.CircleIndicator2
+                android:id="@+id/customIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:background="@color/transparente"
+                app:ci_animator="@animator/scale_with_alpha"
+                app:ci_drawable="@drawable/dot"
+                app:ci_drawable_unselected="@drawable/dot" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvListGames"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/carouselView"
-        tools:listitem="@layout/item_game" />
+        </FrameLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabMarket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:backgroundTint="@color/red_market"
-        android:src="@drawable/ic_baseline_shopping_cart_24_white"
-        app:borderWidth="0dp"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvListGames"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/carouselView"
+            tools:listitem="@layout/item_game" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
