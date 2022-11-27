@@ -1,9 +1,5 @@
 package com.example.lojagames.list
 
-import android.app.PendingIntent
-import android.content.Intent
-import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -11,12 +7,9 @@ import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.GridLayoutManager

@@ -54,7 +54,6 @@
                 app:ci_animator="@animator/scale_with_alpha"
                 app:ci_drawable="@drawable/dot"
                 app:ci_drawable_unselected="@drawable/dot" />
-
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
