@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="fill"
     android:theme="@style/Theme.LojaGames"
-    tools:context=".list.MainActivity">
+    tools:context=".MainActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabMarket"

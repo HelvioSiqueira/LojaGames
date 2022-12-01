@@ -1,11 +1,10 @@
-package com.example.lojagames.list
+package com.example.lojagames
 
-import android.app.blob.BlobStoreManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.lojagames.R
+import com.example.lojagames.car.CarGamesFragment
 import com.example.lojagames.databinding.ActivityMainBinding
-import java.sql.Blob
+import com.example.lojagames.list.ListGamesFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,5 +23,15 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.mainLayout, fragment, ListGamesFragment.TAG_LIST)
             .commit()
+
+        binding.fabMarket.setOnClickListener {
+
+            val fragmentCar = CarGamesFragment.newInstance()
+
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.mainLayout, fragmentCar, CarGamesFragment.TAG_CAR)
+                .commit()
+        }
     }
 }

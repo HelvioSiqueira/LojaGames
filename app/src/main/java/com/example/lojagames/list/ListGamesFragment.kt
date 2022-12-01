@@ -136,6 +136,7 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
 
     private suspend fun getList() {
         gameList = viewModel.getGames()!!
+        listTest = gameList
     }
 
     private fun startRecyclerView() {
@@ -218,6 +219,8 @@ class ListGamesFragment : Fragment(), CoroutineScope, MenuProvider, SearchView.O
 
     companion object {
         const val TAG_LIST = "tagList"
+
+        var listTest = listOf<Game>()
 
         fun newInstance() = ListGamesFragment()
     }
